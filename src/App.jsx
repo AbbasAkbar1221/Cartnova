@@ -1,10 +1,12 @@
-
+import React from 'react';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="App">
-      <h2>Welcome to Cartnova</h2>
-    </div>
+    <>
+    <Navbar />
+    <h1 className='font-bold text-4xl'>Welcome to Cartnova</h1>
+    </>
   );
 }
 
