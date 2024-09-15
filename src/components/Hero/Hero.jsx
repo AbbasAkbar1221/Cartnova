@@ -5,7 +5,10 @@ import arrow from "../Assets/arrow_icon.png";
 
 const Hero = () => {
   return (
-    <div className="hero-container min-h-screen flex items-center justify-between px-20 py-16 bg-gradient-to-r from-white to-gray-900">
+    <div className="hero-container min-h-screen flex items-center justify-between px-20 py-16 bg-gradient-to-r from-gray-100 via-gray-500 to-gray-900">
+
+
+
 
       <div className="flex flex-col -mt-80">
         <h1 className="text-7xl font-bold space-x-9 animate-fadeIn">
