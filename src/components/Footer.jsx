@@ -24,7 +24,7 @@ const Footer = () => {
       </div>
       <hr />
         <div className="flex justify-center my-4 text-gray-500">
-            <p className='pb-4'>&copy; 2024 Cartnova. All rights reserved.</p>
+            <p className='pb-2'>&copy; 2024 Cartnova. All rights reserved.</p>
         </div>
     </div>
   )

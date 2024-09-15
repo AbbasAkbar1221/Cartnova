@@ -15,6 +15,7 @@ function App() {
       <Router>
       <div className="flex flex-col min-h-screen">
         <Navbar />
+        <div className="flex-grow">
         <Routes>
           <Route path="/" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
@@ -25,8 +26,6 @@ function App() {
           <Route path="/product/:id" elemente={<Product />} />
           <Route path="/login" element={<LoginSignup />} />
         </Routes>
-        <div className="content flex-grow">
-          <h1 className="font-bold text-4xl">Welcome to Cartnova</h1>
         </div>
         <Footer />
         </div>
