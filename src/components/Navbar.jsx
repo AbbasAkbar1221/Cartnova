@@ -1,9 +1,19 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+
 
 const Navbar = () => {
   let [menu, setMenu] = useState("shop");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(menu === 'shop'){
+      navigate('/');
+    }
+  })
   return (
     <nav>
       <div className="flex items-center justify-between h-20 px-5 bg-gray-900">
@@ -18,9 +28,9 @@ const Navbar = () => {
           <ul className="flex space-x-10 text-white">
             <li
               className="hover:text-gray-300 cursor-pointer"
-              onClick={() => setMenu("shop")}
+              onClick={() => {setMenu("shop")}}
             >
-              <Link to='/'>Shop All</Link> {menu === "shop" ? <hr /> : <></>}
+              <Link to='/'>Shop All</Link> {menu === "shop" ? <hr /> : <></>} 
             </li>
             <li
               className="hover:text-gray-300 cursor-pointer"

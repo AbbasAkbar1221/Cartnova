@@ -2,7 +2,7 @@ import React from 'react'
 
 const NewsLetter = () => {
   return (
-    <div className='text-center border-2 border-gray-400 py-14 bg-gray-100'>
+    <div className='text-center border-2 border-gray-400 py-14 bg-gray-200'>
       <h1 className='text-5xl'>Get Exclusive Offers In Your Inbox</h1>
       <p className='text-2xl text-gray-500 py-4'>Subscribe to our newsletter and stay on top of fashion</p>
         <form className='text-lg'>
