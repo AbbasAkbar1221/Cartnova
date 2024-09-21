@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import Breadcrum from '../Breadcrum/Breadcrum'
 import { useContext } from 'react'
 import { ShopContext } from '../../context/ShopContext'
+import ProductDisplay from '../ProductDisplay.jsx/ProductDisplay'
+import DescriptionBox from '../descriptionBox/DescriptionBox'
 
 const Product = () => {
   const {id} = useParams();
@@ -11,6 +13,8 @@ const Product = () => {
   return (
     <>
       <Breadcrum product={product}/> 
+      <ProductDisplay product={product} className=''/>
+      <DescriptionBox/>
     </>
   )
 }

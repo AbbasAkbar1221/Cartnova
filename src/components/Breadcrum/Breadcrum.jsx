@@ -1,7 +1,7 @@
 import React from 'react'
 import arrow from '../Assets/breadcrum/breadcrum_arrow.png'
 import { Link } from 'react-router-dom'
-import ProductDisplay from '../ProductDisplay.jsx/ProductDisplay'
+
 
 const Breadcrum = ({product}) => {
   return (
@@ -13,7 +13,7 @@ const Breadcrum = ({product}) => {
         <img src={arrow} alt="arrow" />
         <span className='mx-2  text-gray-600'>{product.name}</span>
     </div>
-    <ProductDisplay product={product} className=''/>
+    
     </>
   )
 }
