@@ -1,7 +1,8 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Item = ({ ItemObj }) => {
   return (
+    <Link to={`/product/${ItemObj.id}`}>
     <div className="border-2 border-gray-400 rounded-lg p-4 flex flex-col items-center w-full transition-transform transform hover:scale-105 animate-fadeIn">
       <img src={ItemObj.image} alt={ItemObj.name} className="w-full h-96 object-cover mb-4 rounded-lg transition-transform transform hover:scale-110" />
       <h1 className="text-xl font-semibold mb-2">{ItemObj.name}</h1>
@@ -10,6 +11,7 @@ const Item = ({ ItemObj }) => {
         <div className="oldCost text-sm text-gray-500 line-through">₹{ItemObj.old_cost}</div>
       </div>
     </div>
+    </Link>
   );
 };
 

@@ -34,6 +34,14 @@ import p33_img from "./product/product_33.png";
 import p34_img from "./product/product_34.png";
 import p35_img from "./product/product_35.png";
 import p36_img from "./product/product_36.png";
+import m1 from './m1.jpg'
+import m2 from './m2.jpg'
+import m3 from './m3.jpg'
+import m4 from './m4.jpg'
+import k1 from './k1.jpg'
+import k2 from './k2.jpg'
+import k3 from './k3.jpg'
+import k4 from './k4.jpg'
 
 let all_products = [
   {
@@ -359,6 +367,80 @@ let all_products = [
     image: p36_img,
     new_cost: 990.0,
     old_cost: 720.5,
+  },
+
+
+  {
+    id: 150,
+    name: " Hoodie with Jogger",
+    description: "This is a description of the product. It is a very good product. You should buy it.",
+    category:'Kid',
+    image: k1,
+    new_cost: 1200.00,
+    old_cost: 1150.50,
+  },
+  {
+    id: 151,
+    name: "White Sweater",
+    description: "This is a description of the product. It is a very good product. You should buy it.",
+    category:'Kid',
+    image: k2,
+    new_cost: 900.00,
+    old_cost: 850.50,
+  },
+  {
+    id: 152,
+    name: "Jacket with Blue jeans",
+    description: "This is a description of the product. It is a very good product. You should buy it.",
+    category:'Kid',
+    image: k3,
+    new_cost: 950.00,
+    old_cost: 880.50,
+  },
+  {
+    id: 153,
+    name: "JumpSuit",
+    description: "This is a description of the product. It is a very good product. You should buy it.",
+    category:'Kid',
+    image: k4,
+    new_cost: 700.00,
+    old_cost: 550.00,
+  },
+  {
+  id: 125,
+    name: "Mustard Hoodie",
+    description: "This is a description of the product. It is a very good product. You should buy it.",
+    category: "Men",
+    image: m1,
+    new_cost: 950.00,
+    old_cost: 780.50,
+  },
+  {
+    id: 126,
+    name: "Gray-green sweatshirt",
+    description: "This is a description of the product. It is a very good product. You should buy it.",
+    category: "Men",
+    image: m2,
+    new_cost: 985.00,
+    old_cost: 820.50,
+  },
+  {
+    id: 127,
+    name: "Black Suit",
+    description: "This is a description of the product. It is a very good product. You should buy it.",
+    category: "Men",
+    image: m3,
+    new_cost: 790.00,
+    old_cost: 800.50,
+  },
+  {
+    id: 128,
+    name: "Dark Gray Blazer",
+    description: "This is a description of the product. It is a very good product. You should buy it.",
+    category: "Men",
+    image: m4,
+    new_cost: 600.00,
+    old_cost: 450.00,
   },
 ];
 

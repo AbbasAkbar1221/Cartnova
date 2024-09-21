@@ -47,7 +47,7 @@ let data_product_trending_women = [
 ];
 let data_product_trending_men = [
   {
-    id: 1,
+    id: 125,
     name: "Mustard Hoodie",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     image: m1,
@@ -55,7 +55,7 @@ let data_product_trending_men = [
     old_cost: 780.50,
   },
   {
-    id: 2,
+    id: 126,
     name: "Gray-green sweatshirt",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     image: m2,
@@ -63,7 +63,7 @@ let data_product_trending_men = [
     old_cost: 820.50,
   },
   {
-    id: 3,
+    id: 127,
     name: "Black Suit",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     image: m3,
@@ -71,7 +71,7 @@ let data_product_trending_men = [
     old_cost: 800.50,
   },
   {
-    id: 4,
+    id: 128,
     name: "Dark Gray Blazer",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     image: m4,
@@ -81,7 +81,7 @@ let data_product_trending_men = [
 ];
 let data_product_trending_kids = [
   {
-    id: 1,
+    id: 150,
     name: " Hoodie with Jogger",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     image: k1,
@@ -89,7 +89,7 @@ let data_product_trending_kids = [
     old_cost: 1150.50,
   },
   {
-    id: 2,
+    id: 151,
     name: "White Sweater",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     image: k2,
@@ -97,7 +97,7 @@ let data_product_trending_kids = [
     old_cost: 850.50,
   },
   {
-    id: 3,
+    id: 152,
     name: "Jacket with Blue jeans",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     image: k3,
@@ -105,7 +105,7 @@ let data_product_trending_kids = [
     old_cost: 880.50,
   },
   {
-    id: 4,
+    id: 153,
     name: "JumpSuit",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     image: k4,
