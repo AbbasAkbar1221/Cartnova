@@ -371,7 +371,7 @@ let all_products = [
 
 
   {
-    id: 150,
+    id: 37,
     name: " Hoodie with Jogger",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     category:'Kid',
@@ -380,7 +380,7 @@ let all_products = [
     old_cost: 1150.50,
   },
   {
-    id: 151,
+    id: 38,
     name: "White Sweater",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     category:'Kid',
@@ -389,7 +389,7 @@ let all_products = [
     old_cost: 850.50,
   },
   {
-    id: 152,
+    id: 39,
     name: "Jacket with Blue jeans",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     category:'Kid',
@@ -398,7 +398,7 @@ let all_products = [
     old_cost: 880.50,
   },
   {
-    id: 153,
+    id: 40,
     name: "JumpSuit",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     category:'Kid',
@@ -407,7 +407,7 @@ let all_products = [
     old_cost: 550.00,
   },
   {
-  id: 125,
+  id: 41,
     name: "Mustard Hoodie",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     category: "Men",
@@ -416,7 +416,7 @@ let all_products = [
     old_cost: 780.50,
   },
   {
-    id: 126,
+    id: 42,
     name: "Gray-green sweatshirt",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     category: "Men",
@@ -425,7 +425,7 @@ let all_products = [
     old_cost: 820.50,
   },
   {
-    id: 127,
+    id: 43,
     name: "Black Suit",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     category: "Men",
@@ -434,7 +434,7 @@ let all_products = [
     old_cost: 800.50,
   },
   {
-    id: 128,
+    id: 44,
     name: "Dark Gray Blazer",
     description: "This is a description of the product. It is a very good product. You should buy it.",
     category: "Men",
