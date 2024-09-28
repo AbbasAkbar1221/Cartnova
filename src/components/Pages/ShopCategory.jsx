@@ -5,8 +5,8 @@ import Item from "../Item/Item";
 import dropdown from "../Assets/dropdown.png";
 
 const ShopCategory = ({ banner, category }) => {
-  const products = useContext(ShopContext);
-  const category_products = products.filter(
+  const {all_products} = useContext(ShopContext);
+  const category_products = all_products.filter(
     (product) => product.category === category
   );
 

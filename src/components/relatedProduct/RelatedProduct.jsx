@@ -23,8 +23,8 @@ const getRelatedproduct=(category, products, id)=>{
 }
 
 const RelatedProduct = ({category, id}) => {
-    const products = useContext(ShopContext);
-    const related_products = getRelatedproduct(category, products, id);
+    const {all_products} = useContext(ShopContext);
+    const related_products = getRelatedproduct(category, all_products, id);
   return (
     <div>
     <div className='mb-10'>
