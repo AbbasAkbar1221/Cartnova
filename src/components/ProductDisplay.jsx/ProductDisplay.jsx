@@ -1,7 +1,12 @@
 import React from 'react'
 import fullstar from '../Assets/stars/star.png'
 import outlineStar from '../Assets/stars/star (1).png'
+import { ShopContext } from '../../context/ShopContext'
+import { useContext } from 'react'
+
 const ProductDisplay = ({product}) => {
+  const {addProductToCart} = useContext(ShopContext);
+  
   return (
     <div className='flex'>
         <div className='mx-6'>
@@ -37,10 +42,10 @@ const ProductDisplay = ({product}) => {
           <button className='border border-gray-500 px-4 py-2 rounded-lg hover:bg-gray-200 text-xl mr-2'>M</button>
           <button className='border border-gray-500 px-4 py-2 rounded-lg hover:bg-gray-200 text-xl mr-2'>L</button>
           <button className='border border-gray-500 px-4 py-2 rounded-lg hover:bg-gray-200 text-xl mr-2'>XL</button>
-          <button className='border border-gray-500 px-4 py-2 rounded-lg hover:bg-gray-200 text-xl mr-2'>XLL</button>
+          <button className='border border-gray-500 px-4 py-2 rounded-lg hover:bg-gray-200 text-xl mr-2'>XXL</button>
         </div>
         <div className='mt-3 mb-5'>
-          <button className=' text-white bg-blue-900 hover:bg-blue-950 p-4 rounded-lg my-6 w-56'>Add to cart</button>
+          <button onClick={addProductToCart} className=' text-white bg-blue-900 hover:bg-blue-950 p-4 rounded-lg my-6 w-56'>Add to cart</button>
         </div>
         <div className='flex mb-6'>
           <h1 className='text-xl font-semibold mr-1.5'>Category :</h1>

@@ -65,6 +65,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to='/cart'><img src="./shopping-cart.png" alt="cart" className="h-8" /></Link>
           </div>
+          <div className="bg-blue-600 text-white w-6 h-9 text-center rounded-xl text-lg pt-1">0</div>
         </div>
       </div>
     </nav>
