@@ -1,6 +1,6 @@
 import React from "react";
 import all_products from "../components/Assets/all_products";
-import { createContext } from "react";
+import { createContext, memo} from "react";
 import { useState } from "react";
 
 const getDefaultCart = () => {
@@ -13,13 +13,17 @@ const ShopContextProvider = ({ children }) => {
     let [cart , setCart] = useState(getDefaultCart());
 
     const addProductToCart = (productId) => {
+      console.log("Adding product to cart:", productId);
       setCart((prevCart) => {
-        return {
-          ...prevCart,
-          [productId]: (prevCart[productId] || 0) + 1
-        }
+          // Create a new cart object by copying the previous cart
+          // If the product is already in the cart, increment its quantity by 1
+          // If the product is not in the cart, add it with a quantity of 1
+          return {
+              ...prevCart, // Spread the previous cart to copy all existing items
+              [productId]: (prevCart[productId] || 0) + 1 // Increment the quantity of the product by 1, or set it to 1 if it doesn't exist
+          };
       });
-    }
+  };
 
     const removeProductFromCart = (productId) => {
       setCart((prevCart) => {
@@ -45,5 +49,7 @@ const ShopContextProvider = ({ children }) => {
     <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>
   );
 };
+// Memoize the ShopContextProvider to prevent unnecessary re-renders
+export const MemoizedShopContextProvider = memo(ShopContextProvider);
 
 export { ShopContext, ShopContextProvider };
