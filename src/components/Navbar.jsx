@@ -1,13 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-
-
+import { ShopContext } from "../context/ShopContext";
+import { useContext } from "react";
 
 
 const Navbar = () => {
   let [menu, setMenu] = useState("shop");
+  let {cart} = useContext(ShopContext);
+
+  let totalItems = Object.values(cart).reduce((total, quantity) => total + quantity, 0);
   
   return (
     <nav>
@@ -65,7 +67,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to='/cart'><img src="./shopping-cart.png" alt="cart" className="h-8" /></Link>
           </div>
-          <div className="bg-blue-600 text-white w-6 h-9 text-center rounded-xl text-lg pt-1">0</div>
+          <div className="bg-blue-600 text-white w-6 h-9 text-center rounded-xl text-lg pt-1">{totalItems}</div>
         </div>
       </div>
     </nav>

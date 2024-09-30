@@ -31,7 +31,7 @@ const LoginSignup = () => {
               </a>
                 </label>
             </div>
-            <button className=" bg-gray-800 hover:bg-gray-700 text-white rounded-lg p-2 w-full mb-6">
+            <button className=" bg-blue-700 hover:bg-blue-800 text-white rounded-lg p-2 w-full mb-6">
               Signup
             </button>
             <p className="mb-6">

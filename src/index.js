@@ -6,10 +6,10 @@ import  {ShopContextProvider}  from "./context/ShopContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     
     <ShopContextProvider>
       <App />
     </ShopContextProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

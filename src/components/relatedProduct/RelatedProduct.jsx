@@ -13,7 +13,7 @@ const getRelatedproduct=(category, products, id)=>{
 
     while(related_products.length < 4 && category_products.length > 0){
         const random_product = category_products[Math.floor(Math.random() * category_products.length)];
-        if(random_product && !random_products_ids.includes(random_product.id) && !random_products_ids.includes(id)){
+        if(random_product && !random_products_ids.includes(random_product.id) && random_product.id !== id){
             related_products.push(random_product)
             random_products_ids.push(random_product.id);
         }
