@@ -1,16 +1,23 @@
 import React from "react";
 import all_products from "../components/Assets/all_products";
 import { createContext, memo} from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const getDefaultCart = () => {
-  let cart = {};
-  return cart;
+    let cart = localStorage.getItem("cart");
+    if(cart){
+      return JSON.parse(cart);
+    }
+    return {};
 };
 
 let ShopContext = createContext(null);
 const ShopContextProvider = ({ children }) => {
     let [cart , setCart] = useState(getDefaultCart());
+
+    useEffect(() => {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
     const addProductToCart = (productId) => {
       console.log("Adding product to cart:", productId);
