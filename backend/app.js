@@ -4,10 +4,11 @@ const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 const cors = require('cors');
+const { log } = require('console');
 const port = 4000;
 const app = express();
 
-
+//start video 5:52:22
 
 app.use(express.json());
 app.use(cors());
@@ -111,6 +112,13 @@ app.post('/removeproduct',async (req,res)=>{
         name:req.body.name
     })
 })
+
+//creating api for getting all products
+app.get('/allproducts', async (req, res) => {
+    let products = await Product.find({});
+    console.log("All products fetched");
+    res.json(products);
+});
 
 app.listen(port, (error) => {
     if(!error){
