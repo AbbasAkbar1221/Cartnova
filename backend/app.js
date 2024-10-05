@@ -8,7 +8,7 @@ const { log } = require('console');
 const port = 4000;
 const app = express();
 
-//start video 5:52:22
+
 
 app.use(express.json());
 app.use(cors());
