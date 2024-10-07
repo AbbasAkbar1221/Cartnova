@@ -5,16 +5,13 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 const cors = require("cors");
 const { log } = require("console");
-const port = 4000;
 const app = express();
+require('dotenv').config();
 
 app.use(express.json());
+const PORT = process.env.PORT;
+const MONGODB_URI = process.env.MONGODB_URI;
 app.use(cors());
-
-// Connect to MongoDB
-mongoose.connect(
-  "mongodb+srv://abbasakbar:abbas@cluster0.o78ff.mongodb.net/cartnova?retryWrites=true&w=majority&appName=Cluster0"
-);
 
 //API creation
 
@@ -171,6 +168,7 @@ app.post("/signup", async (req, res) => {
   for (let i = 0; i < 300; i++) {
     cart[i] = 0;
   }
+  //or let cart = Array(300).fill(0);
   const user = new Users({
     name: req.body.name,
     email: req.body.email,
@@ -257,7 +255,7 @@ const fetchuser = async (req, res, next) => {
     try {
       const data = jwt.verify(token, "secret_ecom");
     //   const user = await Users.findOne({ id: data.user.id });
-      req.user = data.user;
+      req.user = data.user;   //The user data extracted from the token is attached to the req object as req.user.
       next();
     } catch (error) {
       res
@@ -270,7 +268,7 @@ const fetchuser = async (req, res, next) => {
 //creating api for adding product to cart
 app.post("/addtocart",fetchuser, async (req, res) => {
     console.log("Add to cart", req.body.productId);
-  let userData = await Users.findOne({ _id: req.user.id });
+  let userData = await Users.findOne({ _id: req.user.id }); 
   userData.cartData[req.body.productId] += 1;
   await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
   res.json({
@@ -300,10 +298,17 @@ app.get("/getcart", fetchuser, async (req, res) => {
     res.json(userData.cartData);
 });
 
-app.listen(port, (error) => {
-  if (!error) {
-    console.log(`Server is running on port: ${port}`);
-  } else {
-    console.log("Error:", error);
-  }
-});
+
+
+mongoose.connect(MONGODB_URI)
+    .then(() => {
+        console.log('Connected to MongoDB');
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        process.exit(1);
+    });
+

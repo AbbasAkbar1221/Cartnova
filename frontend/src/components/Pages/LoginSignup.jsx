@@ -11,7 +11,7 @@ const LoginSignup = () => {
   });
 
   const changeHandler = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value }); //[e.target.name]: e.target.value: This part is where the actual update occurs. It dynamically sets the property of the new object using the name attribute of the input
   };
 
   const login = async () => {

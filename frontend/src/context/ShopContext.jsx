@@ -99,6 +99,10 @@ const ShopContextProvider = ({ children }) => {
           const { [productId]: _, ...newCart } = prevCart;
           return newCart;
         }
+        /*
+        [productId]: _ destructures the prevCart object to get the value of the productId property. The underscore (_) is a convention to indicate that this value is not used further in the code.
+        ...newCart gathers all remaining properties of prevCart (excluding productId) into a new object called newCart.
+        */
     
         // If the product is in the cart more than once, decrement the quantity
         return {
