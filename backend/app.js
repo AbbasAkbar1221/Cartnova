@@ -11,6 +11,7 @@ require('dotenv').config();
 app.use(express.json());
 const PORT = process.env.PORT;
 const MONGODB_URI = process.env.MONGODB_URI;
+const JWT_SECRET = process.env.JWT_SECRET;
 app.use(cors());
 
 //API creation
@@ -183,7 +184,8 @@ app.post("/signup", async (req, res) => {
     },
   };
 
-  const token = jwt.sign(data, "secret_ecom");
+  
+  const token = jwt.sign(data, JWT_SECRET);
   res.json({
     success: true,
     token,
@@ -200,7 +202,7 @@ app.post("/login", async (req, res) => {
           id: user.id,
         },
       };
-      const token = jwt.sign(data, "secret_ecom");
+      const token = jwt.sign(data, JWT_SECRET);
       res.json({
         success: true,
         token,
@@ -253,7 +255,9 @@ const fetchuser = async (req, res, next) => {
     res.status(401).send({ error: "Please authenticate using a valid token" });
   } else {
     try {
-      const data = jwt.verify(token, "secret_ecom");
+      
+      const data = jwt.verify(token, JWT_SECRET);
+      
     //   const user = await Users.findOne({ id: data.user.id });
       req.user = data.user;   //The user data extracted from the token is attached to the req object as req.user.
       next();
