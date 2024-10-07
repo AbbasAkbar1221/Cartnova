@@ -17,7 +17,8 @@ const LoginSignup = () => {
   const login = async () => {
     console.log("login fuction executed",formData);
     let responseData;
-    await fetch("http://localhost:4000/login", {
+    // await fetch("http://localhost:4000/login", {
+    await fetch("https://cartnova.onrender.com/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -40,7 +41,8 @@ const LoginSignup = () => {
   const signup = async () => {
     console.log("signup fuction executed",formData);
     let responseData;
-    await fetch("http://localhost:4000/signup", {
+    await fetch("https://cartnova.onrender.com/signup", {
+    // await fetch("http://localhost:4000/signup", {
       method: "POST",
       headers: {
         Accept: "application/json",

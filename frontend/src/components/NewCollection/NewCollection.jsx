@@ -7,7 +7,8 @@ const NewCollection = () => {
     const [new_collections, setNewCollections] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:4000/newcollection")
+        fetch("https://cartnova.onrender.com/newcollection")
+        // fetch("http://localhost:4000/newcollection")
             .then((response) => response.json())
             .then((data) => {
                 console.log("Fetched new collections:", data); // Check the fetched data in the browser console

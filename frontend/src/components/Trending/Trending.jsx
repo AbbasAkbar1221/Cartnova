@@ -6,7 +6,8 @@ const Trending = () => {
   let [data_product_trending_women, setData_product] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/trendingwomen")
+    fetch("https://cartnova.onrender.com/trendingwomen")
+    // fetch("http://localhost:4000/trendingwomen")
       .then((response) => response.json())
       .then((data) => 
         setData_product(data));

@@ -41,7 +41,8 @@ app.post("/upload", uploads.single("product"), (req, res) => {
   console.log(req.file.filename);
   res.json({
     success: 1,
-    image_url: `http://localhost:${port}/images/${req.file.filename}`,
+    image_url: `https://cartnova.onrender.com/images/${req.file.filename}`,
+    // image_url: `http://localhost:${port}/images/${req.file.filename}`,
   });
 });
 

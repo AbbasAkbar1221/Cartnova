@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react';
 const Trending = () => {
   let [data_product_trending_kids, setData_product] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4000/trendingkid")
+    fetch("https://cartnova.onrender.com/trendingkid")
+    // fetch("http://localhost:4000/trendingkid")
       .then((response) => response.json())
       .then((data) => 
         setData_product(data));

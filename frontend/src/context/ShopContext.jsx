@@ -18,7 +18,8 @@ const ShopContextProvider = ({ children }) => {
 
 
     useEffect(() => {
-      fetch("http://localhost:4000/allproducts")
+      fetch("https://cartnova.onrender.com/allproducts")
+      // fetch("http://localhost:4000/allproducts")
         .then((response) => response.json())
         .then((data) => {
           console.log("Fetched products:", data); // Check the fetched data in the browser console
@@ -29,7 +30,8 @@ const ShopContextProvider = ({ children }) => {
         });
 
         if(localStorage.getItem("auth-token")){
-          fetch("http://localhost:4000/getcart", {
+          fetch("https://cartnova.onrender.com/getcart", {
+          // fetch("http://localhost:4000/getcart", {
             method: "GET",
             headers: {
               Accept: "application/json",
@@ -61,7 +63,8 @@ const ShopContextProvider = ({ children }) => {
   
     if (localStorage.getItem("auth-token")) {
       try {
-        const response = await fetch("http://localhost:4000/addtocart", {
+        const response = await fetch("https://cartnova.onrender.com/addtocart", {
+        // const response = await fetch("http://localhost:4000/addtocart", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -113,7 +116,8 @@ const ShopContextProvider = ({ children }) => {
     
       if (localStorage.getItem("auth-token")) {
         try {
-          const response = await fetch("http://localhost:4000/removefromcart", {
+          const response = await fetch("https://cartnova.onrender.com/removefromcart", {
+          // const response = await fetch("http://localhost:4000/removefromcart", {
             method: "POST",
             headers: {
               Accept: "application/json",
