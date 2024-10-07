@@ -317,3 +317,43 @@ mongoose.connect(MONGODB_URI)
         process.exit(1);
     });
 
+
+// mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => {
+//         console.log('Connected to MongoDB');
+
+       
+
+//         // Update function
+//         const updateImageUrls = async () => {
+//             try {
+//                 // Find all products
+//                 const products = await Product.find({});
+//                 console.log(`Found ${products.length} products to update.`);
+
+//                 // Loop through each product and update the image URL
+//                 for (const product of products) {
+//                     if (product.image.startsWith("http://localhost:4000/images/")) {
+//                         // Replace the URL
+//                         const newImageUrl = product.image.replace("http://localhost:4000/images/", "https://cartnova.onrender.com/images/");
+//                         product.image = newImageUrl;
+//                         await product.save(); // Save the updated product
+//                         console.log(`Updated product ${product.id}: ${newImageUrl}`);
+//                     }
+//                 }
+
+//                 console.log("All image URLs updated successfully.");
+//             } catch (error) {
+//                 console.error("Error updating image URLs:", error);
+//             } finally {
+//                 // Close the connection
+//                 mongoose.connection.close();
+//             }
+//         };
+
+//         // Call the update function
+//         updateImageUrls();
+//     })
+//     .catch(err => {
+//         console.error("MongoDB connection error:", err);
+//     });
