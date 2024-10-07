@@ -28,8 +28,8 @@ const ProductDisplay = ({product}) => {
           <img src={outlineStar} alt="not found" />
         </div>
         <div className='flex'>
-          <h1 className='line-through text-xl text-gray-400 '> ₹{product.old_cost}</h1>
-          <h1 className='text-2xl text-blue-900 ml-3 font-semibold'> ₹{product.new_cost}</h1>
+          <h1 className='line-through text-xl text-gray-400 '> ₹{product.old_price}</h1>
+          <h1 className='text-2xl text-blue-900 ml-3 font-semibold'> ₹{product.new_price}</h1>
         </div>
         <div>
           <p className='my-6 text-gray-600 text-lg'>{product.description}</p>

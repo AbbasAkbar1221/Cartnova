@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Item from '../Item/Item';
-import { data_product_trending_women } from '../Assets/data_trending_product';
+// import { data_product_trending_women } from '../Assets/data_trending_product';
 
 const Trending = () => {
+  let [data_product_trending_women, setData_product] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/trendingwomen")
+      .then((response) => response.json())
+      .then((data) => 
+        setData_product(data));
+    },[]); 
+
   return (
     <div className='text-center my-10 px-4'>
       <h1 className='text-5xl font-bold mb-10'>Trending in Women</h1>

@@ -58,12 +58,16 @@ const Navbar = () => {
 
         {/* Right Section */}
         <div className="flex items-center space-x-4">
-          <button
-            type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          >
-            <Link to='/login'>Signup</Link>
-          </button>
+          {localStorage.getItem('auth-token') ? 
+          <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+           onClick={()=>{localStorage.removeItem('auth-token');window.location.replace("/")}}>Logout</button>
+        : <Link to='/login'><button
+        type="button"
+        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      >
+        Login
+      </button></Link>}
+       
           <div className="flex items-center">
             <Link to='/cart'><img src="./shopping-cart.png" alt="cart" className="h-8" /></Link>
           </div>

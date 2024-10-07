@@ -4,8 +4,8 @@ import Trending from '../Trending/Trending'
 import TrendingMen from '../Trending/TrendingMen'
 import TrendingKids from '../Trending/TrendingKids'
 import Offers from '../Offers/Offers'
-import TrendingCollection from '../Trending/TrendingCollection'
 import NewsLetter from '../NewsLetter'
+import NewCollection from '../NewCollection/NewCollection'
 
 const Shop = () => {
   return (
@@ -15,7 +15,7 @@ const Shop = () => {
       <TrendingMen/>
       <TrendingKids/>
       <Offers/>
-      <TrendingCollection/>
+      <NewCollection/>
       <NewsLetter/>
     </div>
   )

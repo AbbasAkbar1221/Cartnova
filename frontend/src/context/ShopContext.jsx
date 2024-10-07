@@ -1,62 +1,146 @@
 import React from "react";
-import all_products from "../components/Assets/all_products";
-import { createContext, memo} from "react";
+import { createContext} from "react";
 import { useState, useEffect } from "react";
 
+
 const getDefaultCart = () => {
-    let cart = localStorage.getItem("cart");
-    if(cart){
-      return JSON.parse(cart);
-    }
-    return {};
+  let cart = {};
+  for(let index = 0; index < 300+1; index++){
+    cart[index] = 0;
+  }
+  return cart;
 };
 
 let ShopContext = createContext(null);
 const ShopContextProvider = ({ children }) => {
+    let [all_products, setAllProducts] = useState([]);
     let [cart , setCart] = useState(getDefaultCart());
 
+
     useEffect(() => {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
+      fetch("http://localhost:4000/allproducts")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Fetched products:", data); // Check the fetched data in the browser console
+          setAllProducts(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching products:", error);
+        });
 
-    const addProductToCart = (productId) => {
-      console.log("Adding product to cart:", productId);
-      setCart((prevCart) => {
-          // Create a new cart object by copying the previous cart
-          // If the product is already in the cart, increment its quantity by 1
-          // If the product is not in the cart, add it with a quantity of 1
-          return {
-              ...prevCart, // Spread the previous cart to copy all existing items
-              [productId]: (prevCart[productId] || 0) + 1 // Increment the quantity of the product by 1, or set it to 1 if it doesn't exist
-          };
-      });
+        if(localStorage.getItem("auth-token")){
+          fetch("http://localhost:4000/getcart", {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "auth-token": `${localStorage.getItem("auth-token")}`,
+            },
+            
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Fetched cart:", data); // Check the fetched data in the browser console
+              setCart(data);
+            })
+            .catch((error) => {
+              console.error("Error fetching cart:", error);
+            });
+        }
+    }, []);
+    
+    
+
+
+
+  const addProductToCart = async (productId) => {
+    setCart((prevCart) => ({
+      ...prevCart,
+      [productId]: (prevCart[productId] || 0) + 1,
+    }));
+  
+    if (localStorage.getItem("auth-token")) {
+      try {
+        const response = await fetch("http://localhost:4000/addtocart", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "auth-token": `${localStorage.getItem("auth-token")}`,
+          },
+          body: JSON.stringify({ productId }),
+        });
+  
+        if (!response.ok) {
+          // Handle response errors (e.g., 4xx, 5xx)
+          throw new Error("Failed to add product to cart");
+        }
+  
+        const data = await response.json();
+        console.log("Added to cart:", data); // Check the fetched data in the browser console
+      } catch (error) {
+        console.error("Error adding to cart:", error);
+        // Optional: Revert the cart state if the request fails
+        setCart((prevCart) => ({
+          ...prevCart,
+          [productId]: (prevCart[productId] || 0) - 1, // Decrement or remove if quantity goes to zero
+        }));
+      }
+    }
   };
-
-    const removeProductFromCart = (productId) => {
+  
+ 
+    const removeProductFromCart = async (productId) => {
       setCart((prevCart) => {
-        // if the product is not in the cart, do nothing
-        if(!prevCart[productId]) return prevCart;
-
-        // if the product is in the cart
-        if(prevCart[productId] === 1){
+        if (!prevCart[productId]) return prevCart;
+    
+        // If the product quantity is 1, remove it from the cart
+        if (prevCart[productId] === 1) {
           const { [productId]: _, ...newCart } = prevCart;
           return newCart;
         }
-
-        // if the product is in the cart more than once
+    
+        // If the product is in the cart more than once, decrement the quantity
         return {
           ...prevCart,
-          [productId]: prevCart[productId] - 1
+          [productId]: prevCart[productId] - 1,
+        };
+      });
+    
+      if (localStorage.getItem("auth-token")) {
+        try {
+          const response = await fetch("http://localhost:4000/removefromcart", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "auth-token": `${localStorage.getItem("auth-token")}`,
+            },
+            body: JSON.stringify({ productId }),
+          });
+    
+          if (!response.ok) {
+            throw new Error("Failed to remove product from cart");
+          }
+    
+          const data = await response.json();
+          console.log("Removed from cart:", data); // Check the fetched data in the browser console
+        } catch (error) {
+          console.error("Error removing from cart:", error);
+          // Optional: Revert the cart state if the request fails
+          setCart((prevCart) => ({
+            ...prevCart,
+            [productId]: (prevCart[productId] || 0) + 1, // Revert increment if necessary
+          }));
         }
-      })
-    }
+      }
+    };
+    
     
     const contextValue = { all_products, cart, addProductToCart, removeProductFromCart };
   return (
     <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>
   );
 };
-// Memoize the ShopContextProvider to prevent unnecessary re-renders
-export const MemoizedShopContextProvider = memo(ShopContextProvider);
 
 export { ShopContext, ShopContextProvider };

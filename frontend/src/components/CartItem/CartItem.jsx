@@ -1,17 +1,20 @@
+
+
+
 import React, { useContext } from "react";
 import cross from "../Assets/cart/cross.png";
 import { ShopContext } from "../../context/ShopContext";
 
 const CartItem = () => {
   const { all_products, cart, removeProductFromCart } = useContext(ShopContext);
-  const cartItems = Object.keys(cart); // Array of product IDs
+  const cartItems = Object.keys(cart).filter(productId => cart[productId] > 0); // Filter out products with quantity zero
 
   const totalCost = Object.entries(cart).reduce(
     (total, [productId, quantity]) => {
       const product = all_products.find(
         (product) => product.id === parseInt(productId, 10)
       );
-      return total + (product ? product.new_cost * quantity : 0);
+      return total + (product ? product.new_price * quantity : 0);
     },
     0
   );
@@ -21,58 +24,61 @@ const CartItem = () => {
       {/* Table Header */}
       <div className="grid grid-cols-6 text-xl font-semibold border-b pb-6">
         <p>Products</p>
-        <p className="w-3/4">Title</p> {/* Increased width for title */}
+        <p className="w-3/4">Title</p>
         <p>Price</p>
         <p>Quantity</p>
         <p>Total</p>
-        <p className="">Remove</p> {/* Centered heading */}
+        <p className="">Remove</p>
       </div>
 
       {/* Cart Items */}
-      {cartItems.map((productId) => {
-        const product = all_products.find(
-          (product) => product.id === parseInt(productId, 10) // Ensure IDs match
-        );
-
-        if (!product) {
-          return (
-            <p key={productId} className="text-red-500">
-              Product not found
-            </p>
+      {cartItems.length === 0 ? (
+        <p className="text-gray-500">Your cart is empty.</p>
+      ) : (
+        cartItems.map((productId) => {
+          const product = all_products.find(
+            (product) => product.id === parseInt(productId, 10)
           );
-        }
 
-        return (
-          <div
-            key={productId}
-            className="grid grid-cols-6 items-center my-4 p-2 border-b text-gray-700"
-          >
-            <img
-              src={product.image}
-              alt="Product"
-              className="h-20 w-20 rounded-lg"
-            />
-            <p className="w-3/4 text-lg ">{product.name}</p>{" "}
-            {/* Adjusted className */}
-            <p className="text-lg">₹{product.new_cost}</p>
-            <p className="text-lg">{cart[productId]}</p>
-            <p className="text-lg">₹{product.new_cost * cart[productId]}</p>
-            <div className="">
+          if (!product) {
+            return (
+              <p key={productId} className="text-red-500">
+                Product not found
+              </p>
+            );
+          }
+
+          return (
+            <div
+              key={productId}
+              className="grid grid-cols-6 items-center my-4 p-2 border-b text-gray-700"
+            >
               <img
-                src={cross}
-                alt="Remove item"
-                className="h-7 w-7 cursor-pointer hover:opacity-75"
-                onClick={() => removeProductFromCart(productId)}
+                src={product.image}
+                alt="Product"
+                className="h-20 w-20 rounded-lg"
               />
+              <p className="w-3/4 text-lg">{product.name}</p>
+              <p className="text-lg">₹{product.new_price}</p>
+              <p className="text-lg">{cart[productId]}</p>
+              <p className="text-lg">₹{product.new_price * cart[productId]}</p>
+              <div className="">
+                <img
+                  src={cross}
+                  alt="Remove item"
+                  className="h-7 w-7 cursor-pointer hover:opacity-75"
+                  onClick={() => removeProductFromCart(productId)}
+                />
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
 
       {/* Total Cost Section */}
       <div className="mt-4 border-t pt-4 flex flex-col items-center">
         <div className="flex justify-between text-lg font-semibold w-full max-w-lg">
-          <span >SubTotal:</span>
+          <span>SubTotal:</span>
           <span className="text-gray-600">₹{totalCost.toFixed(2)}</span>
         </div>
         <div className="flex justify-between text-lg font-semibold w-full max-w-lg">

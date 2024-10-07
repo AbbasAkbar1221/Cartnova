@@ -14,8 +14,8 @@ const Item = ({ ItemObj }) => {
       <img src={ItemObj.image} alt={ItemObj.name} className="w-full h-96 object-cover mb-4 rounded-lg transition-transform transform hover:scale-110" />
       <h1 className="text-xl font-semibold mb-2">{ItemObj.name}</h1>
       <div className="cost flex flex-col items-center">
-        <div className="newCost text-lg font-bold text-red-600 mb-1">₹{ItemObj.new_cost}</div>
-        <div className="oldCost text-sm text-gray-500 line-through">₹{ItemObj.old_cost}</div>
+        <div className="newCost text-lg font-bold text-red-600 mb-1">₹{ItemObj.new_price}</div>
+        <div className="oldCost text-sm text-gray-500 line-through">₹{ItemObj.old_price}</div>
       </div>
     </div>
     </Link>
