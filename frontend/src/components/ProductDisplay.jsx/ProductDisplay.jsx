@@ -1,24 +1,31 @@
-import React from 'react'
-import fullstar from '../Assets/stars/star.png'
-import outlineStar from '../Assets/stars/star (1).png'
-import { ShopContext } from '../../context/ShopContext'
-import { useContext } from 'react'
 
-const ProductDisplay = ({product}) => {
-  const {addProductToCart} = useContext(ShopContext);
+
+
+
+import React from 'react';
+import fullstar from '../Assets/stars/star.png';
+import outlineStar from '../Assets/stars/star (1).png';
+import { ShopContext } from '../../context/ShopContext';
+import { useContext } from 'react';
+
+const ProductDisplay = ({ product }) => {
+  const { addProductToCart } = useContext(ShopContext);
 
   return (
-    <div className='flex'>
-        <div className='mx-6'>
-        <img src={product.image} alt="not found" className='h-20 w-18 mb-4 rounded-lg' />
-        <img src={product.image} alt="not found" className='h-20 w-18 mb-4 rounded-lg' />
-        <img src={product.image} alt="not found" className='h-20 w-18 mb-4 rounded-lg'/>
-        <img src={product.image} alt="not found" className='h-20 w-18 mb-4 rounded-lg'/>
-        </div>
-        <div>
-            <img src={product.image} alt="not found"className='mx-8 rounded-xl' />
-        </div>
-      <div>
+    <div className='flex flex-col md:flex-row'>
+      {/* Thumbnails */}
+      <div className='mx-6 mb-4 md:mb-0'>
+        <img src={product.image} alt="not found" className='h-20 w-18 rounded-lg mb-2' />
+        <img src={product.image} alt="not found" className='h-20 w-18 rounded-lg mb-2' />
+        <img src={product.image} alt="not found" className='h-20 w-18 rounded-lg mb-2' />
+        <img src={product.image} alt="not found" className='h-20 w-18 rounded-lg mb-2' />
+      </div>
+      {/* Main image */}
+      <div className='md:mb-0'>
+        <img src={product.image} alt="not found" className='mx-8 rounded-xl' />
+      </div>
+      {/* Product details */}
+      <div className='flex-1'>
         <h1 className='text-2xl font-semibold'>{product.name}</h1>
         <div className='flex h-6 my-6'>
           <img src={fullstar} alt="not found" className='mr-2' />
@@ -28,7 +35,7 @@ const ProductDisplay = ({product}) => {
           <img src={outlineStar} alt="not found" />
         </div>
         <div className='flex'>
-          <h1 className='line-through text-xl text-gray-400 '> ₹{product.old_price}</h1>
+          <h1 className='line-through text-xl text-gray-400'> ₹{product.old_price}</h1>
           <h1 className='text-2xl text-blue-900 ml-3 font-semibold'> ₹{product.new_price}</h1>
         </div>
         <div>
@@ -45,7 +52,7 @@ const ProductDisplay = ({product}) => {
           <button className='border border-gray-500 px-4 py-2 rounded-lg hover:bg-gray-200 text-xl mr-2'>XXL</button>
         </div>
         <div className='mt-3 mb-5'>
-          <button onClick={() => addProductToCart(product.id)} className=' text-white bg-blue-900 hover:bg-blue-950 p-4 rounded-lg my-6 w-56'>Add to cart</button>
+          <button onClick={() => addProductToCart(product.id)} className='text-white bg-blue-900 hover:bg-blue-950 p-4 rounded-lg my-6 w-56'>Add to cart</button>
         </div>
         <div className='flex mb-6'>
           <h1 className='text-xl font-semibold mr-1.5'>Category :</h1>
@@ -68,9 +75,8 @@ const ProductDisplay = ({product}) => {
           <h1 className='text-xl text-gray-400'>Not Available</h1>
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default ProductDisplay
+export default ProductDisplay;

@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 
 const Contact = () => {
@@ -76,7 +78,7 @@ const Contact = () => {
           </div>
           <button
             type="submit"
-            className="w-full  bg-blue-700 hover:bg-blue-800 text-white rounded-lg p-2  mb-6 transition duration-200"
+            className="w-full bg-blue-700 hover:bg-blue-800 text-white rounded-lg p-2 mb-6 transition duration-200"
           >
             Send Message
           </button>
