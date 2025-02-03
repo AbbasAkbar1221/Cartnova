@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 
 const Contact = () => {
@@ -19,9 +17,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic, like sending data to an API or email
     alert('Thank you for reaching out! We will get back to you soon.');
-    // Clear form after submission
     setFormData({
       name: '',
       email: '',

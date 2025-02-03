@@ -16,10 +16,10 @@ const ShopContextProvider = ({ children }) => {
     let [all_products, setAllProducts] = useState([]);
     let [cart , setCart] = useState(getDefaultCart());
 
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
-      fetch("https://cartnova.onrender.com/allproducts")
-      // fetch("http://localhost:4000/allproducts")
+      fetch(`${API_URL}/product/allproducts`)
         .then((response) => response.json())
         .then((data) => {
           console.log("Fetched products:", data); // Check the fetched data in the browser console
@@ -30,8 +30,7 @@ const ShopContextProvider = ({ children }) => {
         });
 
         if(localStorage.getItem("auth-token")){
-          fetch("https://cartnova.onrender.com/getcart", {
-          // fetch("http://localhost:4000/getcart", {
+          fetch(`${API_URL}/cart/getcart`, {
             method: "GET",
             headers: {
               Accept: "application/json",
@@ -63,8 +62,7 @@ const ShopContextProvider = ({ children }) => {
   
     if (localStorage.getItem("auth-token")) {
       try {
-        const response = await fetch("https://cartnova.onrender.com/addtocart", {
-        // const response = await fetch("http://localhost:4000/addtocart", {
+        const response = await fetch(`${API_URL}/cart/addtocart`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -116,8 +114,7 @@ const ShopContextProvider = ({ children }) => {
     
       if (localStorage.getItem("auth-token")) {
         try {
-          const response = await fetch("https://cartnova.onrender.com/removefromcart", {
-          // const response = await fetch("http://localhost:4000/removefromcart", {
+          const response = await fetch(`${API_URL}/cart/removefromcart`, {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -144,8 +141,45 @@ const ShopContextProvider = ({ children }) => {
       }
     };
     
+
+    const removeAllQuantitiesFromCart = async (productId) => {
+      setCart((prevCart) => {
+        // Remove the product from the cart completely
+        const { [productId]: _, ...newCart } = prevCart;
+        return newCart;
+      });
     
-    const contextValue = { all_products, cart, addProductToCart, removeProductFromCart };
+      if (localStorage.getItem("auth-token")) {
+        try {
+          const response = await fetch(`${API_URL}/cart/removeallquantities`, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "auth-token": `${localStorage.getItem("auth-token")}`,
+            },
+            body: JSON.stringify({ productId }),
+          });
+    
+          if (!response.ok) {
+            throw new Error("Failed to remove all quantities from cart");
+          }
+    
+          const data = await response.json();
+          console.log("All quantities removed from cart:", data); // Check the fetched data in the browser console
+        } catch (error) {
+          console.error("Error removing all quantities from cart:", error);
+          // Optional: Restore the cart state if the request fails
+          setCart((prevCart) => ({
+            ...prevCart,
+            [productId]: (prevCart[productId] || 0), // Restore the previous quantity
+          }));
+        }
+      }
+    };
+    
+    
+    const contextValue = { all_products, cart, addProductToCart, removeProductFromCart, removeAllQuantitiesFromCart };
   return (
     <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>
   );

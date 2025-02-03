@@ -13,10 +13,12 @@ const LoginSignup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const login = async () => {
     console.log("login function executed", formData);
     let responseData;
-    await fetch("https://cartnova.onrender.com/login", {
+    await fetch(`${API_URL}/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -39,7 +41,7 @@ const LoginSignup = () => {
   const signup = async () => {
     console.log("signup function executed", formData);
     let responseData;
-    await fetch("https://cartnova.onrender.com/signup", {
+    await fetch(`${API_URL}/user/signup`, {
       method: "POST",
       headers: {
         Accept: "application/json",

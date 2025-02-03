@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 
 const Trending = () => {
   let [data_product_trending_kids, setData_product] = useState([]);
+  const API_URL = process.env.REACT_APP_API_URL;
   useEffect(() => {
-    fetch("https://cartnova.onrender.com/trendingkid")
-    // fetch("http://localhost:4000/trendingkid")
+    fetch(`${API_URL}/product/trendingkid`)
       .then((response) => response.json())
       .then((data) => 
         setData_product(data));

@@ -8,9 +8,16 @@ import DescriptionBox from '../descriptionBox/DescriptionBox'
 import RelatedProduct from '../relatedProduct/RelatedProduct'
 
 const Product = () => {
-  const {id} = useParams();
+  const {id} = useParams();  
   const {all_products} = useContext(ShopContext)
+
+  if (!all_products.length) {
+    return <h2>Loading products...</h2>;
+  }
   const product = all_products.find(product => product.id === Number(id));
+
+  
+  
   return (
     <>
       <Breadcrum product={product}/> 

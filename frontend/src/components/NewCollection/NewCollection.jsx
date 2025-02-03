@@ -7,8 +7,8 @@ const NewCollection = () => {
     const [new_collections, setNewCollections] = useState([]);
 
     useEffect(() => {
-        fetch("https://cartnova.onrender.com/newcollection")
-        // fetch("http://localhost:4000/newcollection")
+        const API_URL = process.env.REACT_APP_API_URL;
+        fetch(`${API_URL}/product/newcollection`)
             .then((response) => response.json())
             .then((data) => {
                 console.log("Fetched new collections:", data); // Check the fetched data in the browser console
