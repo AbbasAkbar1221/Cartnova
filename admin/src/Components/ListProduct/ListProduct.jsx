@@ -6,9 +6,10 @@ import cross_icon from "../../assets/Admin_Assets/cross_icon.png";
 const ListProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
 
+  const VITE_API_URL = import.meta.env.VITE_API_URL;
+
   const fetchInfo = async () => {
-    await fetch("https://cartnova.onrender.com/allproducts")
-    // await fetch("http://localhost:4000/allproducts")
+      await fetch(`${VITE_API_URL}/product/allproducts`)
       .then((response) => response.json())
       .then((data) => {
         setAllProducts(data);
@@ -20,8 +21,7 @@ const ListProduct = () => {
   }, []);
 
   const removeProduct = async (id) => {
-    await fetch(`https://cartnova.onrender.com/removeproduct`, {
-    // await fetch(`http://localhost:4000/removeproduct`, {
+      await fetch(`${VITE_API_URL}/product/removeproduct`, {
       method: "POST",
         headers: {
             Accept: "application/json",
