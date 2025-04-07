@@ -10,7 +10,18 @@ const app = express();
 require('dotenv').config();
 
 app.use(express.json());
-app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+
+const allowedOrigins = [
+  "http://localhost:3000", 
+  "https://cartnova.vercel.app" 
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 
 //Image storage engine
 const storage = multer.diskStorage({
@@ -29,7 +40,6 @@ const uploads = multer({ storage: storage });
 app.use("/images", express.static(path.join(__dirname, "uploads/images")));
 
 app.post("/upload", uploads.single("product"), (req, res) => {
-  console.log(req.file.filename);
   res.json({
     success: 1,
     image_url: `http://localhost:${PORT}/images/${req.file.filename}`,
