@@ -6,10 +6,7 @@ const Navbar = () => {
   const [menu, setMenu] = useState("shop");
   const { cart } = useContext(ShopContext);
 
-  const totalItems = Object.values(cart).reduce(
-    (total, quantity) => total + quantity,
-    0
-  );
+  const totalItems = Object.keys(cart).filter((productId) => cart[productId] > 0).length;
 
   return (
     <nav className="bg-gray-900">

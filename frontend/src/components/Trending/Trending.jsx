@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Item from '../Item/Item';
-// import { data_product_trending_women } from '../Assets/data_trending_product';
 
 const Trending = () => {
   let [data_product_trending_women, setData_product] = useState([]);
 
   const API_URL = process.env.REACT_APP_API_URL;
   useEffect(() => {
-    
-    // fetch("https://cartnova.onrender.com/trendingwomen")
     fetch(`${API_URL}/product/trendingwomen`)
       .then((response) => response.json())
       .then((data) => 
