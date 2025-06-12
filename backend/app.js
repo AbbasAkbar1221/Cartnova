@@ -68,7 +68,11 @@ app.listen(PORT, () => {
 
 
 
-
+// const mongoose = require('mongoose');
+// const Product = require("./models/products"); 
+// const dotenv = require('dotenv');
+// dotenv.config();
+// const MONGODB_URI = process.env.MONGODB_URI 
 
 
 // mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -110,6 +114,9 @@ app.listen(PORT, () => {
 //     .catch(err => {
 //         console.error("MongoDB connection error:", err);
 //     });
+
+
+
 
 
 
